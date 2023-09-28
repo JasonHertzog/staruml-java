@@ -463,6 +463,11 @@ class JavaCodeGenerator {
       var returnParam = elem.getReturnParameter()
       var isConstructor = (elem.name === owner.name)
 
+      // If a no-args constructor would be generated, skip it since that's done elsewhere
+      if (isConstructor && (params == null) && (!params || params.length === 0)) {
+        return
+      }
+
       // doc
       var doc = elem.documentation.trim()
 
